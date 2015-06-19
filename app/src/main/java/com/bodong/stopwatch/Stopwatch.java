@@ -5,10 +5,11 @@ package com.bodong.stopwatch;
  */
 public class Stopwatch {
 
-    private final long startTime;
+
+    private long startTime;
     private final Clock clock;
     private boolean isRunning;
-    private int pauseTime;
+    private int totalTime;
 
     public Stopwatch() {
         this(new Clock() {
@@ -21,17 +22,28 @@ public class Stopwatch {
 
     public Stopwatch(Clock clock) {
         this.clock = clock;
-        this.startTime = clock.getCurrentTimeMillis();
-        isRunning = true;
+        resume();
     }
 
     public void pause() {
-        pauseTime = secondPassed();
+        totalTime += secondPassed();
         isRunning = false;
     }
 
+    public void resume() {
+        isRunning = true;
+        startTime = clock.getCurrentTimeMillis();
+    }
+
     public int secondPassed() {
-        int second = (int) ((clock.getCurrentTimeMillis() - startTime) / 1000);
-        return isRunning ? second : pauseTime;
+        if (isRunning) {
+            return timeFromLastResume() + totalTime;
+        } else {
+            return totalTime;
+        }
+    }
+
+    private int timeFromLastResume() {
+        return (int) ((clock.getCurrentTimeMillis() - startTime) / 1000);
     }
 }

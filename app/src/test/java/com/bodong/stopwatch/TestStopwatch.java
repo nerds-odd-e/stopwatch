@@ -56,6 +56,19 @@ public class TestStopwatch {
         assertEquals(1, stopwatch.secondPassed());
     }
 
+    @Test
+    public void resume() {
+        passMilliseconds(1000L);
+
+        stopwatch.pause();
+
+        passMilliseconds(1000L);
+        stopwatch.resume();
+        passMilliseconds(1000L);
+
+        assertEquals(2, stopwatch.secondPassed());
+    }
+
     private void passMilliseconds(long milliseconds) {
         this.total += milliseconds;
         when(stubClock.getCurrentTimeMillis()).thenReturn(this.total);
