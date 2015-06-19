@@ -1,0 +1,15 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.idea/
+.irb-history
+Stopwatch.iml
+gradle/
+gradlew
+gradlew.bat
+*.png
+test_servers/
