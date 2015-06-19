@@ -10,6 +10,7 @@ public class StopwatchActivity extends Activity {
 
     TextView tv;
     Stopwatch mStopwatch;
+    UIRefresher uiRefresher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,7 @@ public class StopwatchActivity extends Activity {
 
         tv = (TextView) findViewById(R.id.textview);
 
-
+        uiRefresher = new UIRefresher(this);
     }
 
     public void updateUI() {
@@ -32,6 +33,6 @@ public class StopwatchActivity extends Activity {
 
     public void start(View view){
         mStopwatch = new Stopwatch();
-        new UIRefresher(this).startTimer();
+        uiRefresher.startTimer();
     }
 }

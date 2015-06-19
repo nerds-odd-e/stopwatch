@@ -5,13 +5,17 @@ import java.util.TimerTask;
 
 public class UIRefresher {
     private final StopwatchActivity stopwatchActivity;
+    private Timer timer = new Timer();
 
     public UIRefresher(StopwatchActivity stopwatchActivity) {
         this.stopwatchActivity = stopwatchActivity;
     }
 
     public void startTimer() {
-        new Timer().schedule(new TimerTask() {
+        timer.cancel();
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 stopwatchActivity.updateUI();
