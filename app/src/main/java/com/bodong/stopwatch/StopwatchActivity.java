@@ -31,8 +31,12 @@ public class StopwatchActivity extends Activity {
         });
     }
 
-    public void start(View view){
+    public void start(View view) {
         mStopwatch = new Stopwatch();
         uiRefresher.startTimer();
+    }
+
+    public void pause(View view) {
+
     }
 }
