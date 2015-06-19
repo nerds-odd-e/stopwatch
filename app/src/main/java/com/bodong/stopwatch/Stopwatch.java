@@ -7,6 +7,8 @@ public class Stopwatch {
 
     private final long startTime;
     private final Clock clock;
+    private boolean isRunning;
+    private int pauseTime;
 
     public Stopwatch() {
         this(new Clock() {
@@ -20,9 +22,16 @@ public class Stopwatch {
     public Stopwatch(Clock clock) {
         this.clock = clock;
         this.startTime = clock.getCurrentTimeMillis();
+        isRunning = true;
+    }
+
+    public void pause() {
+        pauseTime = secondPassed();
+        isRunning = false;
     }
 
     public int secondPassed() {
-        return (int) ((clock.getCurrentTimeMillis() - startTime) / 1000);
+        int second = (int) ((clock.getCurrentTimeMillis() - startTime) / 1000);
+        return isRunning ? second : pauseTime;
     }
 }

@@ -3,6 +3,8 @@ package com.bodong.stopwatch;
 import org.junit.Before;
 import org.junit.Test;
 
+import dalvik.annotation.TestTarget;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -15,12 +17,14 @@ public class TestStopwatch {
     //    StubClock stubClock = new StubClock();
     Clock stubClock;
     Stopwatch stopwatch;
+    long total;
 
     @Before
     public void createClockAndStopwatch() {
         stubClock = mock(Clock.class);
         when(stubClock.getCurrentTimeMillis()).thenReturn(0L);
         stopwatch = new Stopwatch(stubClock);
+        total = 0;
     }
 
     @Test
@@ -42,8 +46,19 @@ public class TestStopwatch {
         assertEquals(1, stopwatch.secondPassed());
     }
 
+    @Test
+    public void will_return_1_second_when_start_1_second_and_then_pause_and_then_wait_for_1_second() {
+        passMilliseconds(1000L);
+
+        stopwatch.pause();
+
+        passMilliseconds(1000L);
+        assertEquals(1, stopwatch.secondPassed());
+    }
+
     private void passMilliseconds(long milliseconds) {
-        when(stubClock.getCurrentTimeMillis()).thenReturn(milliseconds);
+        this.total += milliseconds;
+        when(stubClock.getCurrentTimeMillis()).thenReturn(this.total);
     }
 
 }
