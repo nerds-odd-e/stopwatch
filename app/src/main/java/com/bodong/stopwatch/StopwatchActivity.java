@@ -37,6 +37,6 @@ public class StopwatchActivity extends Activity {
     }
 
     public void pause(View view) {
-
+        mStopwatch.pause();
     }
 }
