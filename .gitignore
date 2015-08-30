@@ -8,6 +8,8 @@
 .idea/
 .irb-history
 Stopwatch.iml
+91_Stopwatch.iml
+app/app.iml
 gradle/
 gradlew
 gradlew.bat
