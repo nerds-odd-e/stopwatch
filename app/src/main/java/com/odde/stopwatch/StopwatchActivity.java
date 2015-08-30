@@ -1,4 +1,4 @@
-package com.bodong.stopwatch;
+package com.odde.stopwatch;
 
 import android.app.Activity;
 import android.os.Bundle;

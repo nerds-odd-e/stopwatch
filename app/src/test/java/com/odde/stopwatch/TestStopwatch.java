@@ -1,9 +1,7 @@
-package com.bodong.stopwatch;
+package com.odde.stopwatch;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import dalvik.annotation.TestTarget;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;

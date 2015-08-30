@@ -1,4 +1,4 @@
-package com.bodong.stopwatch;
+package com.odde.stopwatch;
 
 /**
  * Created by asuka on 15/6/19.

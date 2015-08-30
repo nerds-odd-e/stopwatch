@@ -1,4 +1,4 @@
-package com.bodong.stopwatch;
+package com.odde.stopwatch;
 
 import java.util.Timer;
 import java.util.TimerTask;
