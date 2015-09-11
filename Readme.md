@@ -26,5 +26,23 @@ Here are the steps how this stopwatch app was developed in an ATDD/TDD way inspi
     * The when step is a bit trick now since we have to wait a short time for the button tap. This is obviously an issue we should address for the Calabash test ... in future
     * No change to the then step
     * Adding a button is such a small step as all code goes to StopwatchActivity without any doubt. And, that's it for this commit.
+* Next, we find there is a bug which will cause unnecessary refreshing. So we just fix it and keep all tests passing. [Git commit] (https://github.com/nerds-odd-e/stopwatch/commit/bb5b048db7f9a8cc9a061de5ee3a6c2f70b2b504)
+* We finally move to a new scenario "作为一个用户，可以暂停计时", meaning the stopwatch can be paused. [Git commit] (https://github.com/nerds-odd-e/stopwatch/commit/e1901c788adb36c698f774a9240066ce1a6e7198)
+    * The given and then step were created already with the first scenario.
+    * The when step which pausing the stopwatch and then wait another second (to make sure the stopwatch really paused!) is implemented with some similar code from the first scenario.
+    * At this point, the second scenario will be failed since there is no implementation yet
+* To implement the second scenario, let's add the pause feature for the Stopwatch class first (start from domain object). [Git commit] (https://github.com/nerds-odd-e/stopwatch/commit/76d3cf446a541340fd807e056e0db34ef70a52e7)
+    * The new failing unit test is doing the exactly the same thing as the second scenario. With previous test refactoring, it's easy to write.
+    * The code passing this unit test looks a bit complex since this Stopwatch class now have a mutable status.
+    * We refactor the code a bit to keep it clean
+* Now let's pass the second scenario with one line code in StopwatchActivity, Hooray! [Git commit] (https://github.com/nerds-odd-e/stopwatch/commit/fa032e53a88d70528014e5cf912ffe954dd30d1f)
+* The third scenario (faster, right?) is "作为一个用户，可以恢复计时", meaning the stopwatch can be resumed. [Git commit] (https://github.com/nerds-odd-e/stopwatch/commit/2194b3cf34a4dc98f2c7c99c0c9bd93b034fe7d2)
+    * The steps are a bit different from the previous two scenarios since this one is more complex. However, by reusing those existing steps, create those given, when and then steps are not that complex.
+    * Again, this scenario will be failed due to no implementation.
+* To implement the third scenario, let's add the resume feature for the Stopwatch class first. Sounds familiar? [Git commit] (https://github.com/nerds-odd-e/stopwatch/commit/https://github.com/nerds-odd-e/stopwatch/commit/8673d519a1845852d0860b3e56416cdd6c1f6062)
+    * Similarly, the new failing resume unit test is doing the exactly the same thing as the third scenario.
+    * Passing the test makes the code even more nasty now with internal status changing in a more complex way.
+    * By some refactoring (with unit tests running from time to time), we make the algorithm more clean by using the total time concept. Great!!
+* Finally, we make the third scenario passed by adding few lines of code into the StopwatchActivity. [Git commit] (https://github.com/nerds-odd-e/stopwatch/commit/https://github.com/nerds-odd-e/stopwatch/commit/f1e894f4a2eba664f8fa434536c36d1e0f078df5)
 
-To be continued...
+That's all for how we create this app in an ATDD/TDD approach. There are some possible refactoring to be done and all other commits can be ignored. 
